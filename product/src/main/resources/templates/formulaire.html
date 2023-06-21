@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire</title>
+    <head th:insert="fragments/head.html :: head"></head>
+    <meta name="description" content="This is my first page.">
+</head>
+<body>
+<header th:insert="fragments/header.html :: header"> </header>
+<div class="formContainer">
+<form th:action="@{/product/create}" method="post" th:object="${produit}">
+    <div class="formul">
+
+            <label class="labelForm" for="marque">Marque</label>
+            <input type="text" th:field="*{marque}" class="inputForm" id="marque" placeholder="ex : Bell">
+
+
+            <label class="labelForm" for="reference">Reference</label>
+            <input type="text" class="inputForm" id="reference" th:field="*{reference}" placeholder="N°907654">
+
+
+
+        <label class="labelForm" for="dateAchat">Date</label>
+        <input type="date" class="inputForm" id="dateAchat" th:field="*{dateAchat}"
+               th:attr="value=${#dates.format(produit.dateAchat, 'yyyy-MM-dd')}">
+
+
+        <label class="labelForm" for="prix">Prix</label>
+        <input type="number" class="inputForm" id="prix" th:field="*{prix}">
+
+
+        <label class="labelForm" for="stock">Stock</label>
+        <input type="number" class="inputForm" id="stock" th:field="*{stock}">
+
+
+        <input type="hidden" th:field="*{id}" class="inputForm" id="id" >
+
+
+        <button type="submit" class="btnForm">Validation</button>
+    </div>
+
+</form>
+</div>
+</body>
+</html>
