@@ -21,6 +21,7 @@ table,
 td {
     border: 1px solid #333;
     font-size: 1em;
+    font-family: Cantarell, Arial, sans-serif;
 }
 
 thead,
@@ -63,6 +64,7 @@ table{
     border-radius: 1rem;
     border: none;
     height: 30px;
+    text-transform: uppercase;
 }
 input{
     border: none;
@@ -73,10 +75,7 @@ input{
 tr{
     text-align: center;
 }
-.btnAdd{
-    text-decoration: none;
-    color:var(--black);
-}
+
 
 #mainHeader{
     display: grid;
@@ -128,7 +127,7 @@ tr{
 
 td a {
     text-decoration: none;
-    color: var(--black);
+    color:var(--white);
 }
 
 .containerDetails{
@@ -158,6 +157,13 @@ td a {
     cursor:pointer;
 }
 
+.btnAdd{
+    text-decoration: none;
+    color:var(--black);
+    font-family: Cantarell, Arial, sans-serif;
+    font-size: 1.2em;
+}
+
 .labelForm{
     font-family: Cantarell, Arial, sans-serif;
     font-size: 1em;
@@ -169,6 +175,15 @@ td a {
     margin-right: auto;
     width:20rem;
     padding: 10px;
+}
+
+.linkForm{
+    text-align: center;
+}
+
+td:nth-child(6){
+    background-color: var(--black);
+
 }
 /*ul{*/
 /*    display: flex;*/

@@ -40,7 +40,7 @@
             <td th:text="${produit.dateAchat}"></td>
             <td th:text="${produit.prix}"></td>
             <td th:text="${produit.stock}"></td>
-            <td ><a th:href="@{/product/edit/{id}(id=${produit.id})}" class="btn">edit </a><a class="btn" th:href="@{/product/delete/{id}(id=${produit.id})}"> delete</a></td>
+            <td ><a th:href="@{/product/edit/{id}(id=${produit.id})}" class="btn">| edit |</a><a class="btn" th:href="@{/product/delete/{id}(id=${produit.id})}"> delete |</a></td>
         </tr>
         </tbody>
     </table>
@@ -49,8 +49,11 @@
             <input type="text" name="productId" placeholder="ID du produit">
             <button type="submit" class="btn">Rechercher</button>
         </form>
-            <a th:href="@{/product/form}" class="btn">Add product</a>
-
+            <hr>
+            <div class="linkForm">
+                <a th:href="@{/product/form}" class="btnAdd">|-> Ajouter un produit <-|</a>
+            </div>
+            <hr>
         </div>
     </div>
 
