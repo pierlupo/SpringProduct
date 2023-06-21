@@ -51,11 +51,20 @@ public class ProductWithViewController {
         return produitService.findAll().toString();
     }
 
-    @DeleteMapping("/delete/{id}")
+//    @DeleteMapping("/delete/{id}")
+//    public String deleteProduit(@PathVariable("id") Integer id) {
+//        Produit p = produitService.findById(id);
+//        if (p != null && produitService.delete(p)) {
+//            return "redirect:/product/view";
+//        }
+//        return "Aucun produit avec cet id";
+//    }
+
+    @GetMapping("/delete/{id}")
     public String deleteProduit(@PathVariable("id") Integer id) {
         Produit p = produitService.findById(id);
         if (p != null && produitService.delete(p)) {
-            return "redirect:/product";
+            return "redirect:/product/view";
         }
         return "Aucun produit avec cet id";
     }

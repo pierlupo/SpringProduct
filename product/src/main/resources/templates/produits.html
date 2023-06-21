@@ -13,9 +13,9 @@
         <ul>
             <li><a href="view">Accueil</a></li>
             <li><a href="view">Produit</a></li>
-            <li><a href="form">Contact</a></li>
-            <li><a href="about.html">À propos</a></li>
-            <li><a href="blog.html">blog</a></li>
+            <li><a href="form">Form</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">blog</a></li>
         </ul>
     </nav>
 </header><!-- Fin du mainHeader -->
@@ -40,8 +40,7 @@
             <td th:text="${produit.dateAchat}"></td>
             <td th:text="${produit.prix}"></td>
             <td th:text="${produit.stock}"></td>
-            <td ><a th:href="@{/product/edit/{id}(id=${produit.id})}" class="btn btn-primary mx-2">edit </a><a class="btn btn-danger mx-2" th:href="@{/product/delete/{id}(id=${produit.id})}"> delete</a></td>
-<!--            <td><a th:href="@{/product/edit/{id}{id=${produit.id}}">edit </a><a th:href="@{/product/delete/{id}{id=${produit.id}}">delete</a></td>-->
+            <td ><a th:href="@{/product/edit/{id}(id=${produit.id})}" class="btn">edit </a><a class="btn" th:href="@{/product/delete/{id}(id=${produit.id})}"> delete</a></td>
         </tr>
         </tbody>
     </table>
