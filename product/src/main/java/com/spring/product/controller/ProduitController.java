@@ -2,8 +2,8 @@ package com.spring.product.controller;
 
 
 import com.spring.product.entity.Produit;
-import com.spring.product.service.ProduitService;
-import com.spring.product.service.impl.IProduitService;
+import com.spring.product.service.impl.ProduitService;
+import com.spring.product.service.IProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

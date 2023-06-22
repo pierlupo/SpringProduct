@@ -1,4 +1,4 @@
-package com.spring.product.service.impl;
+package com.spring.product.service;
 
 import com.spring.product.entity.Produit;
 

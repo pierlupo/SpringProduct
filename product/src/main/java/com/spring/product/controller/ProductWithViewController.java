@@ -1,34 +1,40 @@
 package com.spring.product.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.product.entity.Produit;
-import com.spring.product.service.ProduitService;
-import com.spring.product.service.impl.IProduitService;
-import jakarta.servlet.http.Cookie;
+import com.spring.product.service.impl.LoginService;
+import com.spring.product.service.impl.ProduitService;
+import com.spring.product.service.IProduitService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Arrays;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
-
-import static org.apache.logging.log4j.ThreadContext.isEmpty;
 
 @Controller
 @RequestMapping("/product")
 public class ProductWithViewController {
 
-    private Produit produit;
+    private String location = "upload-dir";
 
     @Autowired
     private ProduitService produitService;
 
+    @Autowired
+    private LoginService _loginService;
+
+    @Autowired
+    private HttpServletResponse _response;
 
     @GetMapping("/view")
     public ModelAndView getAllProduit() {
@@ -164,6 +170,52 @@ public class ProductWithViewController {
             }
         }
         return existProduit;
+    }
+    @GetMapping("/formupload")
+    public ModelAndView form(){
+        ModelAndView vm = new ModelAndView("form-upload");
+        return vm;
+    }
+
+    @GetMapping("files")
+    @ResponseBody
+    public List<String> getFiles() throws IOException {
+        List<String> liste = new ArrayList<>();
+        Files.walk(Paths.get(this.location)).forEach(path -> {
+            liste.add(path.getFileName().toString());
+        });
+        return liste;
+    }
+
+    @PostMapping("submitForm")
+    public String submitForm(@RequestParam("image") MultipartFile image) throws IOException {
+        Path destinationFile = Paths.get(location).resolve(Paths.get(image.getOriginalFilename())).toAbsolutePath();
+        InputStream stream = image.getInputStream();
+        Files.copy(stream, destinationFile, StandardCopyOption.REPLACE_EXISTING);
+        return "redirect:/product/formupload";
+    }
+
+    @GetMapping("/login")
+    public ModelAndView getLogin() {
+        ModelAndView mv = new ModelAndView("login");
+        return mv;
+    }
+
+    @PostMapping("submit")
+    public ModelAndView submitLogin(@RequestParam String login, @RequestParam String password) throws IOException {
+        if(_loginService.login(login, password)) {
+            _response.sendRedirect("protected");
+        }
+        ModelAndView mv = new ModelAndView("login");
+        return mv;
+    }
+
+    @GetMapping("protected")
+    public String protectedPage() throws IOException {
+        if(!_loginService.isLogged()){
+            _response.sendRedirect("login");
+        }
+        return "redirect:/product/view";
     }
 }
 

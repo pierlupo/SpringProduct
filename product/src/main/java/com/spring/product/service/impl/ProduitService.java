@@ -1,7 +1,7 @@
-package com.spring.product.service;
+package com.spring.product.service.impl;
 
 import com.spring.product.entity.Produit;
-import com.spring.product.service.impl.IProduitService;
+import com.spring.product.service.IProduitService;
 import com.spring.product.util.ServiceHibernate;
 import org.hibernate.Session;
 import org.hibernate.query.Query;

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire</title>
-    <head th:insert="fragments/head.html :: head"></head>
+    <head th:insert="~{fragments/head.html :: head}"></head>
     <meta name="description" content="This is my first page.">
 </head>
 <body>
-<header th:insert="fragments/header.html :: header"> </header>
+<header th:insert="~{fragments/header.html :: header}"></header>
 <div class="formContainer">
 <form th:action="@{/product/create}" method="post" th:object="${produit}">
     <div class="formul">
